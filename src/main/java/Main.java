@@ -8,7 +8,6 @@ public class Main {
         field.fill(FIELD_FILENAME);
         boolean[] chr = new boolean[83];
 
-        Ant ant = new Ant(chr);
-        System.out.println(field.testAnt(ant));
+        Util.optimize(field);
     }
 }
