@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
     private static final String FIELD_FILENAME = "fieldFiles/field.csv";
-    private static final int IDEAL_APPLE_COUNT = 35;
+    private static final int IDEAL_APPLE_COUNT = 89;
     private static final boolean[] IDEAL_CHROMOSOME = {
             false, false, false, // 000 - начальное состояние
             false, false, true, false, true, false, true, false, false, false, // 001 01    010 00

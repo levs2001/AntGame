@@ -35,11 +35,11 @@ public class GameField {
         int[] curAntPos = {0, 0};
 
         for (int moveN = 0; moveN < MOVE_MAX_COUNT; moveN++) {
-            int[] forwardCellCoord = getForwardCellCoord(curAntPos, antDirection);
-            Cell forwardCell = getForwardCell(forwardCellCoord);
+            int[] forwardCellCoord = getForwardCellCoord(curAntPos, antDirection, field.length);
+            Cell forwardCell = field[forwardCellCoord[0]][forwardCellCoord[1]];
             Ant.Action antAct = ant.getAction(forwardCell);
 
-            if (antAct.equals(Ant.Action.MOVE_FORWARD) && isInField(forwardCellCoord)) {
+            if (antAct.equals(Ant.Action.MOVE_FORWARD)) {
                 curAntPos = forwardCellCoord;
                 if (field[curAntPos[0]][curAntPos[1]].equals(Cell.APPlE)) {
                     field[curAntPos[0]][curAntPos[1]] = Cell.EMPTY;
@@ -101,22 +101,39 @@ public class GameField {
         }
     }
 
-    private Cell getForwardCell(int[] forwardCellCoord) {
-        if (isInField(forwardCellCoord)) {
-            return field[forwardCellCoord[0]][forwardCellCoord[1]];
+    /**
+     * Вычисляет значение координат клетки, находящейся впереди муравья.
+     * Поле кольцевое, то есть если клетка спереди за полем, то это клетка с другой стороны (как в классической змейке)
+     *
+     * @param curCellPos  - текущая координата клетки
+     * @param direction   - направление
+     * @param fieldLength - размер поля (поле квадратное)
+     * @return координаты клетки впереди
+     */
+    private static int[] getForwardCellCoord(int[] curCellPos, Direction direction, int fieldLength) {
+        int[] move = direction.getMove();
+        int[] notRingCoord = {curCellPos[0] + move[0], curCellPos[1] + move[1]};
+        if (isInField(notRingCoord, fieldLength)) {
+            return notRingCoord;
         }
 
-        return Cell.EMPTY;
+        // Если муравей выходит за поле, то заходит с другой стороны (поле кольцевое)
+        if (notRingCoord[0] >= fieldLength) {
+            notRingCoord[0] = 0;
+        } else if (notRingCoord[0] < 0) {
+            notRingCoord[0] = fieldLength - 1;
+        } else if (notRingCoord[1] >= fieldLength) {
+            notRingCoord[1] = 0;
+        } else {
+            notRingCoord[1] = fieldLength - 1;
+        }
+        return notRingCoord;
     }
 
-    private boolean isInField(int[] cellCoord) {
-        return cellCoord[0] < field.length && cellCoord[0] >= 0 && cellCoord[1] < field[0].length && cellCoord[1] >= 0;
+    private static boolean isInField(int[] cellCoord, int fieldLength) {
+        return cellCoord[0] < fieldLength && cellCoord[0] >= 0 && cellCoord[1] < fieldLength && cellCoord[1] >= 0;
     }
 
-    private static int[] getForwardCellCoord(int[] curCellPos, Direction direction) {
-        int[] move = direction.getMove();
-        return new int[]{curCellPos[0] + move[0], curCellPos[1] + move[1]};
-    }
 
     public enum Cell {
         EMPTY,
