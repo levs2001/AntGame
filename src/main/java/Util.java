@@ -19,16 +19,16 @@ public class Util {
         }
 
         System.out.println(Util.getScore(field, Util.select(field, population).get(0)));
-        for (int i = 0; i < Util.ITERATIONS; i++) {
-
-            population = population.stream().map(ant -> {
-                var mutated = Util.invertBit(ant, random.nextInt(CHROMOSOME_LENGTH));
-                return Util.getScore(field, mutated) > Util.getScore(field, ant) ? mutated : ant;
-            }).collect(Collectors.toList());
-            population = Util.select(field, population);
-            System.out.println("Best: " + Util.getScore(field, population.get(0)));
-            population = Util.crossover(population);
-        }
+//        for (int i = 0; i < Util.ITERATIONS; i++) {
+//
+//            population = population.stream().map(ant -> {
+//                var mutated = Util.invertBit(ant, random.nextInt(CHROMOSOME_LENGTH));
+//                return Util.getScore(field, mutated) > Util.getScore(field, ant) ? mutated : ant;
+//            }).collect(Collectors.toList());
+//            population = Util.select(field, population);
+//            System.out.println("Best: " + Util.getScore(field, population.get(0)));
+//            population = Util.crossover(population);
+//        }
     }
 
     public static boolean[] invertBit(boolean[] chromosome,int ind) {
@@ -48,9 +48,9 @@ public class Util {
                              }
                              return Map.entry(chromosome, score);
                          })
-                         .sorted((e1, e2) -> - (e1.getValue() - e2.getValue()))
+                         .sorted((e1, e2) -> (e1.getValue() - e2.getValue()))
                          .map(Entry::getKey)
-                         .limit(population.size() / 2)
+//                         .limit(population.size() / 2)
                          .collect(Collectors.toList());
     }
 
