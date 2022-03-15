@@ -42,5 +42,6 @@ class GameTest {
 
         Ant ant = new Ant(IDEAL_CHROMOSOME);
         Assertions.assertEquals(field.testAnt(ant), IDEAL_APPLE_COUNT);
+        Assertions.assertEquals(field.testAnt(ant), IDEAL_APPLE_COUNT);
     }
 }

@@ -4,7 +4,7 @@ public class Main {
     private static final int CHROMOSONE_LENGTH = 83;
     private static final String FIELD_FILENAME = "fieldFiles/field.csv";
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws IOException {
         GameField field = new GameField();
         field.fill(FIELD_FILENAME);
 //        boolean[] chr = new boolean[83];

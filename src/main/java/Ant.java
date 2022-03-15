@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,9 +25,10 @@ public class Ant {
     private State curState;
     private int chromosomePos = 0;
 
-    Ant(boolean[] chromosome) throws Exception {
-        if (chromosome.length != CHROMOSOME_LENGTH)
-            throw new Exception("Incorrect chromosome length!");
+    Ant(boolean[] chromosome) {
+        if (chromosome.length != CHROMOSOME_LENGTH) {
+            throw new RuntimeException("Incorrect chromosome length!");
+        }
 
         this.chromosome = chromosome;
 
@@ -41,6 +43,19 @@ public class Ant {
 
         chromosomePos = 0;
         curState = states[castToStateNum(chromosome, chromosomePos)];
+    }
+
+
+    public void mutate(int dnaInd, boolean changedDna) {
+        chromosome[dnaInd] = changedDna;
+    }
+
+    public boolean[] getChromosome() {
+        return chromosome;
+    }
+
+    public boolean[] getChromosomeCopy() {
+        return Arrays.copyOf(chromosome, chromosome.length);
     }
 
     /**

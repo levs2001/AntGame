@@ -4,8 +4,7 @@ public class GameField {
     private static final String FILE_SPLITTER = ";";
     private static final String S_EMPTY = "0";
     private static final int MOVE_MAX_COUNT = 200;
-
-    private final Cell[][] field = new Cell[32][32];
+    private final Cell[][] initField = new Cell[32][32];
 
     /**
      * Заполняет поле, в котором будут тестироваться муравьи.
@@ -30,6 +29,7 @@ public class GameField {
      * @return количество съеденных муравьем яблок за 200 ходов
      */
     public int testAnt(Ant ant) {
+        Cell[][] field = copyField(initField);
         int eattenAppleC = 0;
         Direction antDirection = Direction.RIGHT;
         int[] curAntPos = {0, 0};
@@ -51,6 +51,15 @@ public class GameField {
         }
 
         return eattenAppleC;
+    }
+
+    private static Cell[][] copyField(Cell[][] field) {
+        Cell[][] ans = new Cell[field.length][field[0].length];
+        for (int i = 0; i < field.length; i++) {
+            System.arraycopy(field[i], 0, ans[i], 0, field.length);
+        }
+
+        return ans;
     }
 
     /**
@@ -97,7 +106,7 @@ public class GameField {
     private void fillLine(int lineN, String line) {
         String[] strCells = line.split(FILE_SPLITTER);
         for (int j = 0; j < strCells.length; j++) {
-            field[lineN][j] = strCells[j].equals(S_EMPTY) ? Cell.EMPTY : Cell.APPlE;
+            initField[lineN][j] = strCells[j].equals(S_EMPTY) ? Cell.EMPTY : Cell.APPlE;
         }
     }
 
