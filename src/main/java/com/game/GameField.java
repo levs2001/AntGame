@@ -1,5 +1,4 @@
-package com;
-
+package com.game;
 import java.io.*;
 
 public class GameField {

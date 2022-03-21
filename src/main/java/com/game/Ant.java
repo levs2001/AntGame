@@ -1,4 +1,4 @@
-package com;
+package com.game;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ public class Ant {
     private State curState;
     private int chromosomePos = 0;
 
-    Ant(boolean[] chromosome) {
+    public Ant(boolean[] chromosome) {
         if (chromosome.length != CHROMOSOME_LENGTH) {
             throw new RuntimeException("Incorrect chromosome length!");
         }

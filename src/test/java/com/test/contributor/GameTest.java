@@ -1,5 +1,7 @@
-import com.Ant;
-import com.GameField;
+package com.test.contributor;
+
+import com.game.Ant;
+import com.game.GameField;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -28,7 +30,7 @@ class GameTest {
     }
 
     @Test
-    public void testAnt() throws Exception {
+    public void testAnt() {
         Throwable thrown = assertThrows(Exception.class, () -> {
             new Ant(BAD_CHROMOSOME);
         });
@@ -43,7 +45,7 @@ class GameTest {
         field.fill(FIELD_FILENAME);
 
         Ant ant = new Ant(IDEAL_CHROMOSOME);
-        Assertions.assertEquals(field.testAnt(ant), IDEAL_APPLE_COUNT);
-        Assertions.assertEquals(field.testAnt(ant), IDEAL_APPLE_COUNT);
+        Assertions.assertEquals(field.testAnt(IDEAL_CHROMOSOME), IDEAL_APPLE_COUNT);
+        Assertions.assertEquals(field.testAnt(IDEAL_CHROMOSOME), IDEAL_APPLE_COUNT);
     }
 }
