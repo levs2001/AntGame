@@ -1,16 +1,21 @@
+package com;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Main {
-    private static final int CHROMOSONE_LENGTH = 83;
     private static final String FIELD_FILENAME = "fieldFiles/field.csv";
 
     public static void main(String[] args) throws IOException {
         GameField field = new GameField();
         field.fill(FIELD_FILENAME);
-//        boolean[] chr = new boolean[83];
-//        for (int i = 0; i < 100; i++) {
-//            System.out.println(field.testAnt(new Ant(Util.randomBools(CHROMOSONE_LENGTH))));
-//        }
         Util.optimize(field);
     }
 }

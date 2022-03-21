@@ -1,3 +1,5 @@
+package com;
+
 import java.io.*;
 
 public class GameField {
@@ -25,10 +27,11 @@ public class GameField {
     /**
      * Эмулирует проход муравья по полю.
      *
-     * @param ant - тестирующийся муравей
+     * @param chromosome - битовая строка, соответствующая муравью
      * @return количество съеденных муравьем яблок за 200 ходов
      */
-    public int testAnt(Ant ant) {
+    public int testAnt(boolean[] chromosome) {
+        Ant ant = new Ant(chromosome);
         Cell[][] field = copyField(initField);
         int eattenAppleC = 0;
         Direction antDirection = Direction.RIGHT;
