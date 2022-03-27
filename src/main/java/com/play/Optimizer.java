@@ -2,13 +2,17 @@ package com.play;
 
 import com.game.GameField;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Optimizer {
-
+    // Размер популяции можно менять
     private static final int POPULATION_SIZE = 5_000;
+    // Количество итераций можно менять, но проверьте, что вы проходите по времени, запустив тест
     private static final int ITERATIONS = 100;
+
+    // Не меняйте эти константы
     private static final int CHROMOSOME_LENGTH = 83;
     private static final int SEED = 1488;
     private static final Random RANDOM = new Random(SEED);
@@ -28,17 +32,14 @@ public class Optimizer {
         }
 
         for (int i = 0; i < ITERATIONS; i++) {
-            population = population.stream()
-                    .map(evolution::mutate)
-                    .map(evolution::mutate)
-                    .map(evolution::mutate)
-                    .collect(Collectors.toList());
-            population = evolution.select(population);
-            System.out.println("Best: " + field.testAnt(population.get(0)));
-            population = evolution.crossover(population);
+            // Возможный вариант реализации:
+            // Проведите несколько мутаций с каждой особью
+            // Сделайте селекцию
+            // Сделайте кроссовер
         }
 
         population = evolution.select(population);
+        // select оставляет половину лучших и сортирует по убыванию, поэтому лучшая будет в начале
         return population.get(0);
     }
 }

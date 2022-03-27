@@ -11,7 +11,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Evolution {
-
     private final Random random;
     private final GameField field;
     private final int chromosomeL;
@@ -49,8 +48,9 @@ public class Evolution {
 
     /**
      * Выбирает лучшую половину популяции.
+     * Лучшая половина сортируется по убыванию (в начале списка лучший муравей)
      *
-     * @return список с лучшей половиной
+     * @return отсортированный по убыванию список с лучшей половиной
      */
     public List<boolean[]> select(List<boolean[]> population) {
         return population.stream()
