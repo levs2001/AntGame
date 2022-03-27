@@ -47,19 +47,6 @@ public class Ant {
         curState = states[castToStateNum(chromosome, chromosomePos)];
     }
 
-
-    public void mutate(int dnaInd, boolean changedDna) {
-        chromosome[dnaInd] = changedDna;
-    }
-
-    public boolean[] getChromosome() {
-        return chromosome;
-    }
-
-    public boolean[] getChromosomeCopy() {
-        return Arrays.copyOf(chromosome, chromosome.length);
-    }
-
     /**
      * Переводит конечный автомат в следующее состояние, в зависимости от входного действия и отдает действие,
      * которое предпринял муравей.
