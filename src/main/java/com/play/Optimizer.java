@@ -10,7 +10,7 @@ public class Optimizer {
     // Размер популяции можно менять
     private static final int POPULATION_SIZE = 5_000;
     // Количество итераций можно менять, но проверьте, что вы проходите по времени, запустив тест
-    private static final int ITERATIONS = 100;
+    private static final int ITERATIONS = 10;
 
     // Не меняйте эти константы
     private static final int CHROMOSOME_LENGTH = 83;
