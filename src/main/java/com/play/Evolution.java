@@ -101,7 +101,7 @@ public class Evolution {
 
         System.arraycopy(parent2Copy, 0, parent1Copy, 0, quater);
 
-        System.arraycopy(parent2Copy, half, parent1Copy, half, half + quater - half);
+        System.arraycopy(parent2Copy, half, parent1Copy, half, quater);
 
         return parent1Copy;
     }
